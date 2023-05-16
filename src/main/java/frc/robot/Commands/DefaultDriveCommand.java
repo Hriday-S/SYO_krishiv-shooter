@@ -8,15 +8,15 @@ import java.util.function.DoubleSupplier;
 public class DefaultDriveCommand extends CommandBase {
     private final DrivetrainSubsystem m_drivetrainSubsystem;
 
-    private final DoubleSupplier m_xSupplier;
-    private final DoubleSupplier m_rotSupplier;
+    private final DoubleSupplier m_leftSupplier;
+    private final DoubleSupplier m_rightSupplier;
 
     public DefaultDriveCommand(DrivetrainSubsystem drivetrainSubsystem,
-                                DoubleSupplier xSupplier,
-                                DoubleSupplier rotSupplier) {
+                                DoubleSupplier leftSupplier,
+                                DoubleSupplier rightSupplier) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
-        this.m_xSupplier = xSupplier;
-        this.m_rotSupplier = rotSupplier;
+        this.m_leftSupplier = leftSupplier;
+        this.m_rightSupplier = rightSupplier;
 
         addRequirements(m_drivetrainSubsystem);
     }
@@ -24,8 +24,8 @@ public class DefaultDriveCommand extends CommandBase {
     @Override
     public void execute() {
         m_drivetrainSubsystem.drive(
-                m_xSupplier.getAsDouble(),
-                m_rotSupplier.getAsDouble()
+                m_leftSupplier.getAsDouble(),
+                m_rightSupplier.getAsDouble()
         );
     }
 

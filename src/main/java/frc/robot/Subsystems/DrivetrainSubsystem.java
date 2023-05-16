@@ -49,6 +49,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        m_myRobot.arcadeDrive(m_xSpeed, m_rotSpeed);
+        m_myRobot.tankDrive(m_xSpeed, m_rotSpeed);
     }
 }

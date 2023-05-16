@@ -19,7 +19,7 @@ public class RobotContainer {
         m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
                 m_drivetrainSubsystem, 
                 () -> MathUtil.applyDeadband(-m_stick.getRawAxis(1), 0.05), 
-                () -> MathUtil.applyDeadband(m_stick.getRawAxis(4), 0.05) * 0.25
+                () -> MathUtil.applyDeadband(-m_stick.getRawAxis(5), 0.05)
         ));
 
         configureButtons();
