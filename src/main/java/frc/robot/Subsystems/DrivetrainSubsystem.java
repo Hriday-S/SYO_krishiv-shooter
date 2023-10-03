@@ -8,6 +8,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.lang.annotation.Inherited;
 
 public class DrivetrainSubsystem extends SubsystemBase {
     private DifferentialDrive m_myRobot;
@@ -21,7 +25,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     private MotorControllerGroup m_rightMotors;
 
     private double m_xSpeed;
-    private double m_rotSpeed;
+    private double m_ySpeed;
+
+    private double error;
+
 
     public DrivetrainSubsystem() {
         m_frontleftMotor = new CANSparkMax(Constants.FRONT_LEFT_MOTOR_PORT, MotorType.kBrushed);
@@ -40,15 +47,23 @@ public class DrivetrainSubsystem extends SubsystemBase {
         m_leftMotors.setInverted(true);
 
         m_myRobot = new DifferentialDrive(m_leftMotors, m_rightMotors);
-    }
 
-    public void drive(double xSpeed, double rotSpeed) {
-        m_xSpeed = xSpeed;
-        m_rotSpeed = rotSpeed;
+
+
+    }
+    
+    
+
+    public void drive(double xSpeed, double ySpeed) {
+        error = 0;
+
+        m_xSpeed = xSpeed - error;
+        m_ySpeed = ySpeed + error;
+        SmartDashboard.putNumber("error", error);
     }
 
     @Override
     public void periodic() {
-        m_myRobot.tankDrive(m_xSpeed, m_rotSpeed);
+        m_myRobot.tankDrive(m_xSpeed, m_ySpeed);
     }
 }

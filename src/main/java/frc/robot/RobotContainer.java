@@ -16,6 +16,10 @@ public class RobotContainer {
     public RobotContainer() {
         m_drivetrainSubsystem = new DrivetrainSubsystem();
 
+
+   
+
+
         m_stick = new Joystick(0);//joystick
         m_controller = new Joystick(1);//controller
         /* JOYSTICK
@@ -25,50 +29,23 @@ public class RobotContainer {
                 () -> MathUtil.applyDeadband(-m_stick.getRawAxis(1) - m_stick.getRawAxis(0), 0.05)
         ));
         */
+
+
+
         //Controller Joysticks
         
         m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
                 m_drivetrainSubsystem, 
-                () -> MathUtil.applyDeadband(m_controller.getRawAxis(1) + m_controller.getRawAxis(4), 0.05), 
-                () -> MathUtil.applyDeadband(m_controller.getRawAxis(1) - m_controller.getRawAxis(4), 0.05)
+                () -> MathUtil.applyDeadband(m_controller.getRawAxis(3), 0.05), 
+                () -> MathUtil.applyDeadband(m_controller.getRawAxis(1), 0.05)
         ));
+    
         
-        //Controller DPAD
-        /* 
-        m_dpad = m_controller.getPOV();
-        if(m_dpad == 0)
-        {
-        m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
-                m_drivetrainSubsystem, 
-                () -> MathUtil.applyDeadband(1, 0.05), 
-                () -> MathUtil.applyDeadband(1, 0.05)
-        ));
-        }
-        if(m_dpad == 180)
-        {
-        m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
-                m_drivetrainSubsystem, 
-                () -> MathUtil.applyDeadband(-1, 0.05), 
-                () -> MathUtil.applyDeadband(-1, 0.05)
-        ));
-        }
-        if(m_dpad == 90)
-        {
-        m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
-                m_drivetrainSubsystem, 
-                () -> MathUtil.applyDeadband(1, 0.05), 
-                () -> MathUtil.applyDeadband(-1, 0.05)
-        ));
-        }
-        if(m_dpad == 270)
-        {
-        m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
-                m_drivetrainSubsystem, 
-                () -> MathUtil.applyDeadband(-1, 0.05), 
-                () -> MathUtil.applyDeadband(1, 0.05)
-        ));
-        }
-        */
+       
+        
+        
+        
+        
         configureButtons();
     }
 

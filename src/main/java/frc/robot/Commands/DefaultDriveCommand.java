@@ -25,7 +25,7 @@ public class DefaultDriveCommand extends CommandBase {
     public void execute() {
         m_drivetrainSubsystem.drive(
                 m_leftSupplier.getAsDouble(),
-                m_rightSupplier.getAsDouble()
+                m_rightSupplier.getAsDouble()*0.67
         );
     }
 
